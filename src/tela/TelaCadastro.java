@@ -111,7 +111,7 @@ public class TelaCadastro extends JFrame{
 						+ "Nome: Texto\n"
 						+ "Desenvolvedor: Texto\n"
 						+ "Estoque: Numero Inteiro\n"
-						+ "Preço: Numero Real(Utilize ponto final ao invés de virgulas)\n"
+						+ "Preço: Numero Real (Utilize ponto final ao invés de virgulas)\n"
 						+ "Genero: Texto");
 			}
 		});
