@@ -90,25 +90,28 @@ public class TelaCadastro extends JFrame{
 
 			try {
 
-				if(txtNome.getText() == null) {
-					if(txtDev.getText() == null) {
-						if(txtEstoque.getText() == null) {
-							if(txtPreco.getText() == null) {
-								if(txtGenero.getText() == null) {
-
-								}
-							}
-						}
-					}
+				if((txtNome.getText() == null) || (txtNome.getText().equals(""))) {
+					JOptionPane.showMessageDialog(null, "Digite o Nome para cadastrar");
+				}else if((txtDev.getText() == null) || (txtDev.getText().equals(""))) {
+					JOptionPane.showMessageDialog(null, "Digite a desenvolvedora para cadastrar");
+				}else if((txtEstoque.getText() == null) || (txtEstoque.getText().equals(""))) {
+					JOptionPane.showMessageDialog(null, "Digite a quantidade no estoque para cadastrar");
+				}else if((txtPreco.getText() == null) || (txtPreco.getText().equals(""))) {
+					JOptionPane.showMessageDialog(null, "Digite o preço para cadastrar");
+				}else if((txtGenero.getText() == null) || (txtGenero.getText().equals(""))) {
+					JOptionPane.showMessageDialog(null, "Digite o genero para cadastrar");
 				} else {
+					String nome = txtNome.getText(), dev = txtDev.getText(), genero = txtGenero.getText();
+					int estoque = Integer.parseInt(txtEstoque.getText());
+					double preco = Double.parseDouble(txtPreco.getText());
 
 				}
 			} catch (Exception e2) {
-				JOptionPane.showMessageDialog(null, "Digite valores condizentes com os campos"
-						+ "Nome: Texto"
-						+ "Desenvolvedor: Texto"
-						+ "Estoque: Numero Inteiro"
-						+ "Preço: Numero Real"
+				JOptionPane.showMessageDialog(null, "Digite valores condizentes com os campos\n"
+						+ "Nome: Texto\n"
+						+ "Desenvolvedor: Texto\n"
+						+ "Estoque: Numero Inteiro\n"
+						+ "Preço: Numero Real(Utilize ponto final ao invés de virgulas)\n"
 						+ "Genero: Texto");
 			}
 		});
