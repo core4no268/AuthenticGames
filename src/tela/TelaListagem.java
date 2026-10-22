@@ -19,6 +19,22 @@ public class TelaListagem extends JFrame{
 		setVisible(true);
 	}
 	public void init() {
+		Font sansMSP = new Font("Comic Sans MS", 1, 49);
+		Font sansMSB = new Font("Comic Sans MS", 1, 15);
+		
+		
+		
+		JTextArea lblTitulo = new JTextArea();
+		lblTitulo.setText("  ID  -  Nome  |  Desenvolverdora  |  Qntd. Estoque  |  Preço  |  Genêro");
+		lblTitulo.setBounds(55, 50, 580, 570);
+		lblTitulo.setFont(sansMSB);
+		add(lblTitulo);
+		
+		
+		
+		
+		
+		
 		
 		
 	}
