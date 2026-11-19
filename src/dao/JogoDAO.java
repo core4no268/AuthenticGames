@@ -22,7 +22,7 @@ public class JogoDAO {
 		 con.close();
 		 }
 		 
-		 public  Jogo buscar(int id) throws SQLException {
+		 public Jogo buscar(int id) throws SQLException {
 			 Jogo jogo = null;
 			 String sql = "SELECT nome, dev, estoque, preco, genero FROM Jogo WHERE id = ?";
 			 Conexao conexao = new Conexao();
@@ -30,9 +30,6 @@ public class JogoDAO {
 			 PreparedStatement ps = con.prepareStatement(sql);
 			 ps.setInt(1, id);
 			 ResultSet rs = ps.executeQuery();
-
-			
-
 			 while (rs.next()) {
 				 String nome = rs.getString("nome");
 				 String dev = rs.getString("dev");
@@ -45,5 +42,9 @@ public class JogoDAO {
 			 ps.close();
 			 con.close();
 			 return jogo;
+		 }
+		 
+		 public boolean atualizar(int id, String nome, String dev, int estoque, double preco, String genero) throws SQLException {
+			 String sql = "UPDATE Jogo SET nome ";
 		 }
 }

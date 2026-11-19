@@ -108,7 +108,6 @@ public class TelaEdicao extends JFrame{
 		btnAtualizar.setBounds(50, lblGenero.getY() + espac + 40, 160, 60);
 		btnAtualizar.setFont(sansMSB);
 		btnAtualizar.addActionListener(e->{
-
 		
 		});
 		add(btnAtualizar);
