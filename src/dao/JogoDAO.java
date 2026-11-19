@@ -45,6 +45,6 @@ public class JogoDAO {
 		 }
 		 
 		 public boolean atualizar(int id, String nome, String dev, int estoque, double preco, String genero) throws SQLException {
-			 String sql = "UPDATE Jogo SET nome ";
+			 String sql = "UPDATE Jogo SET nome = ?, dev = ?, estoque = ?, preco = ?, genero = ?";
 		 }
 }
