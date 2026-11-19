@@ -22,43 +22,29 @@ public class Jogo {
 	 public void setNome(String nome) {
 		this.nome = nome;
 	 }
-	 
-	 
-	 
 	 public String getDev() {
 		return dev;
 	 }
 	 public void setDev(String dev) {
 		this.dev = dev;
 	 }
-	 
-	 
-	 
 	 public int getEstoque() {
 		return estoque;
 	 }
 	 public void setEstoque(int estoque) {
 		this.estoque = estoque;
 	 }
-	 
-	 
-	 
 	 public double getPreco() {
 		return preco;
 	 }
 	 public void setPreco(double preco) {
 		this.preco = preco;
 	 }
-	 
-	 
-	 
 	 public String getGenero() {
 		return genero;
 	 }
 	 public void setGenero(String genero) {
 		this.genero = genero;
 	 }
-	 
-	 
 	 
 	}
