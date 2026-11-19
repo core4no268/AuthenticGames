@@ -21,4 +21,29 @@ public class JogoDAO {
 		 ps.close();
 		 con.close();
 		 }
+		 
+		 public  Jogo buscar(int id) throws SQLException {
+			 Jogo jogo = null;
+			 String sql = "SELECT nome, dev, estoque, preco, genero FROM Jogo WHERE id = ?";
+			 Conexao conexao = new Conexao();
+			 Connection con = conexao.getConexao();
+			 PreparedStatement ps = con.prepareStatement(sql);
+			 ps.setInt(1, id);
+			 ResultSet rs = ps.executeQuery();
+
+			
+
+			 while (rs.next()) {
+				 String nome = rs.getString("nome");
+				 String dev = rs.getString("dev");
+				 int estoque = rs.getInt("estoque");
+				 double preco = rs.getDouble("preco");
+				 String genero = rs.getString("genero");
+				 jogo = new Jogo(nome, dev, estoque, preco, genero);
+
+			 }
+			 ps.close();
+			 con.close();
+			 return jogo;
+		 }
 }

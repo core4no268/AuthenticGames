@@ -2,7 +2,12 @@ package tela;
 
 import java.awt.Font;
 import java.awt.Image;
+import java.sql.SQLException;
+
 import javax.swing.*;
+import dao.*;
+import modelo.Jogo;
+
 
 public class TelaEdicao extends JFrame{
 	public TelaEdicao () {
@@ -39,15 +44,6 @@ public class TelaEdicao extends JFrame{
 		txtId.setFont(sansMSB);
 		add(txtId);
 		
-		JButton btnBuscar = new JButton();
-		btnBuscar.setText("Buscar");
-		btnBuscar.setBounds(lblId.getX()+367, lblId.getY(), 150	, 45);
-		btnBuscar.setFont(sansMSB);
-		btnBuscar.addActionListener(e->{
-
-		
-		});
-		add(btnBuscar);
 		
 		JLabel lblDiv = new JLabel();
 		lblDiv.setText("------------------------");
@@ -139,6 +135,24 @@ public class TelaEdicao extends JFrame{
 			dispose();
 		});
 		add(btnVoltar);
+		
+		JButton btnBuscar = new JButton();
+		btnBuscar.setText("Buscar");
+		btnBuscar.setBounds(lblId.getX()+367, lblId.getY(), 150	, 45);
+		btnBuscar.setFont(sansMSB);
+		btnBuscar.addActionListener(e->{
+			try {
+				Jogo jogo = new JogoDAO().buscar(Integer.parseInt(txtId.getText()));
+				txtNome.setText(jogo.getNome());
+				txtDev.setText(jogo.getDev());
+				txtEstoque.setText(jogo.getEstoque() + "");
+				txtPreco.setText(jogo.getPreco() + "");
+				txtGenero.setText(jogo.getGenero());
+			} catch (Exception e1) {
+				
+			}
+		});
+		add(btnBuscar);
 
 	}
 }
