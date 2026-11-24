@@ -4,6 +4,7 @@ import conexao.*;
 import modelo.*;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class JogoDAO {
 		 public void inserir(Jogo jogo) throws SQLException {
@@ -36,7 +37,7 @@ public class JogoDAO {
 				 int estoque = rs.getInt("estoque");
 				 double preco = rs.getDouble("preco");
 				 String genero = rs.getString("genero");
-				 jogo = new Jogo(nome, dev, estoque, preco, genero);
+				 jogo = new Jogo(id, nome, dev, estoque, preco, genero);
 
 			 }
 			 ps.close();
@@ -46,5 +47,24 @@ public class JogoDAO {
 		 
 		 public boolean atualizar(int id, String nome, String dev, int estoque, double preco, String genero) throws SQLException {
 			 String sql = "UPDATE Jogo SET nome = ?, dev = ?, estoque = ?, preco = ?, genero = ?";
+			 
+		 }
+		 
+		 public ArrayList<Jogo> listarTodos()	{
+			 ArrayList<Jogo> lista = new ArrayList<>();
+			 String sql = "SELECT * FROM Jogo";
+			 try {
+				 Conexao conexao = new Conexao();
+				 Connection con = conexao.getConexao();
+				 PreparedStatement ps = con.prepareStatement(sql);
+				 ResultSet rs = ps.executeQuery();
+				 while(rs.next())  {
+					 Jogo j = new Jogo(rs.getInt("id"), rs.getString("nome"), rs.getString(""), rs.getInt("estoque"), rs.getDouble("preco"), rs.getString("genero") );	 
+				 }
+				 con.close();
+			 }catch (Exception e) {
+				
+			}
+			 return lista;
 		 }
 }
