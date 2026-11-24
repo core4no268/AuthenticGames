@@ -108,7 +108,22 @@ public class TelaEdicao extends JFrame{
 		btnAtualizar.setBounds(50, lblGenero.getY() + espac + 40, 160, 60);
 		btnAtualizar.setFont(sansMSB);
 		btnAtualizar.addActionListener(e->{
-		
+			try {
+				if(new JogoDAO().atualizar(Integer.parseInt(txtId.getText()),
+										   txtNome.getText(), 
+										   txtDev.getText(), 
+										   Integer.parseInt(txtEstoque.getText()), 
+										   Double.parseDouble(txtPreco.getText()), 
+										   txtGenero.getText())) {
+					JOptionPane.showMessageDialog(null, "")
+				}
+			} catch (NumberFormatException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		});
 		add(btnAtualizar);
 
