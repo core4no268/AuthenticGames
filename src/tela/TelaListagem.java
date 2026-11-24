@@ -1,10 +1,13 @@
 package tela;
 
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.Image;
 import javax.swing.*;
 
 public class TelaListagem extends JFrame{
+	
+	private JScrollPane rolagem = new JScrollPane();
 	public TelaListagem () {
 		setSize(700, 800);
 		setLayout(null);
@@ -17,8 +20,10 @@ public class TelaListagem extends JFrame{
 
 		init();
 		setVisible(true);
+		
 	}
 	public void init() {
+		
 		Font sansMSP = new Font("Comic Sans MS", 1, 49);
 		Font sansMSB = new Font("Comic Sans MS", 1, 15);
 		
