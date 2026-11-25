@@ -33,7 +33,7 @@ public class TelaEdicao extends JFrame{
 		lblTitulo.setBounds(184, 15, 300, 80);
 		lblTitulo.setFont(sansMSP);
 		add(lblTitulo);
-		
+
 		JLabel lblId = new JLabel();
 		lblId.setText("ID:");
 		lblId.setBounds(50, lblTitulo.getY()+90, 400, 45);
@@ -43,8 +43,8 @@ public class TelaEdicao extends JFrame{
 		txtId.setBounds(lblId.getX()+160, lblId.getY(), 160, 45);
 		txtId.setFont(sansMSB);
 		add(txtId);
-		
-		
+
+
 		JLabel lblDiv = new JLabel();
 		lblDiv.setText("------------------------");
 		lblDiv.setBounds(lblId.getX(), lblId.getY()+20, 6700, 80);
@@ -110,28 +110,33 @@ public class TelaEdicao extends JFrame{
 		btnAtualizar.addActionListener(e->{
 			try {
 				if(new JogoDAO().atualizar(Integer.parseInt(txtId.getText()),
-										   txtNome.getText(), 
-										   txtDev.getText(), 
-										   Integer.parseInt(txtEstoque.getText()), 
-										   Double.parseDouble(txtPreco.getText()), 
-										   txtGenero.getText())) {
-					JOptionPane.showMessageDialog(null, "")
+						txtNome.getText(), 
+						txtDev.getText(), 
+						Integer.parseInt(txtEstoque.getText()), 
+						Double.parseDouble(txtPreco.getText()), 
+						txtGenero.getText())) {
+					JOptionPane.showMessageDialog(null, "Jogo atualizado com sucesso");
+				} else {
+					JOptionPane.showMessageDialog(null, "Erro ao cadastrar o jogo");
 				}
 			} catch (NumberFormatException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				JOptionPane.showMessageDialog(null, "Digite numeros validos nos campos\nID: numeros inteiros\nEstoque:numeros inteiros\nPreço: numeros reais (Utilize .)");
 			}
 		});
 		add(btnAtualizar);
 
 		JButton btnExcluir = new JButton();
-		btnExcluir.setText("Limpar");
+		btnExcluir.setText("Excluir");
 		btnExcluir.setBounds(260, btnAtualizar.getY(), 160, 60);
 		btnExcluir.setFont(sansMSB);
 		btnExcluir.addActionListener(e->{
+			JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir?", "Confirmaçao", JOptionPane.YES_NO_OPTION);
+			try {
+				if(new JogoDAO().excluir(Integer.parseInt(txtId.getText()))) {
+					JOptionPane.showMessageDialog(null, "Jogo excluido com sucesso");
+				}
+			} catch (NumberFormatException e1) {
+				JOptionPane.showMessageDialog(null, "Digite um numero valido no id");			}
 			txtNome.setText(null);
 			txtDev.setText(null);
 			txtEstoque.setText(null);
@@ -149,22 +154,29 @@ public class TelaEdicao extends JFrame{
 			dispose();
 		});
 		add(btnVoltar);
-		
+
 		JButton btnBuscar = new JButton();
 		btnBuscar.setText("Buscar");
 		btnBuscar.setBounds(lblId.getX()+367, lblId.getY(), 150	, 45);
 		btnBuscar.setFont(sansMSB);
 		btnBuscar.addActionListener(e->{
-			try {
-				Jogo jogo = new JogoDAO().buscar(Integer.parseInt(txtId.getText()));
-				txtNome.setText(jogo.getNome());
-				txtDev.setText(jogo.getDev());
-				txtEstoque.setText(jogo.getEstoque() + "");
-				txtPreco.setText(jogo.getPreco() + "");
-				txtGenero.setText(jogo.getGenero());
-			} catch (Exception e1) {
-				
-			}
+
+				Jogo jogo;
+				try {
+					jogo = new JogoDAO().buscar(Integer.parseInt(txtId.getText()));
+					if (jogo != null) {
+					txtNome.setText(jogo.getNome());
+					txtDev.setText(jogo.getDev());
+					txtEstoque.setText(jogo.getEstoque() + "");
+					txtPreco.setText(jogo.getPreco() + "");
+					txtGenero.setText(jogo.getGenero());
+					} else {
+						JOptionPane.showMessageDialog(null, "ID não encontrado");
+					}
+				} catch (NumberFormatException e1) {
+					JOptionPane.showMessageDialog(null, "Digite um numero valido no id");
+				} 
+
 		});
 		add(btnBuscar);
 
