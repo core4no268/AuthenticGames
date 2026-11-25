@@ -1,5 +1,6 @@
 package tela;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import javax.swing.*;
@@ -12,9 +13,10 @@ public class TelaCadastro extends JFrame{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setTitle("AuthenticGames");
+		getContentPane().setBackground(Color.decode("#DAF0FF"));
 		ImageIcon logo = new ImageIcon("logo.png");
 		setIconImage(logo.getImage());
-
+		setBackground(Color.BLUE);
 		init();
 		setVisible(true);
 	}
