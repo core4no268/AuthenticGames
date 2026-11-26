@@ -1,13 +1,31 @@
 package tela;
 
-import java.awt.Component;
 import java.awt.Font;
-import java.awt.Image;
+import java.util.ArrayList;
 import javax.swing.*;
+import dao.*;
+import modelo.Jogo;
+
+
+
 
 public class TelaListagem extends JFrame{
+	private JTextArea telinha = new JTextArea();
+	private JScrollPane rolagem = new JScrollPane(telinha);
 	
-	private JScrollPane rolagem = new JScrollPane();
+	
+	private void listar() {
+		JogoDAO dao = new JogoDAO();
+		 ArrayList<Jogo> lista = dao.listarTodos();
+		 telinha.setText("");
+		 for (Jogo j : lista) {
+		 telinha.append(j.getId() + " - " + j.getNome() + " - " + j.getDev() + " - " + j.getEstoque() + " - " + j.getPreco() + " - " + j.getGenero() + "\n");
+		 }
+		 if (lista.isEmpty()) {
+		 telinha.setText("Nenhum jogo cadastrado.");
+		 }
+}
+	
 	public TelaListagem () {
 		setSize(700, 800);
 		setLayout(null);
@@ -22,25 +40,39 @@ public class TelaListagem extends JFrame{
 		setVisible(true);
 		
 	}
+	
 	public void init() {
+		 
+		Font sansMSB = new Font("Comic Sans MS", 1, 20);
+		Font sansMSBb = new Font("Comic Sans MS", 1, 18);
+		rolagem.setBounds(20, 100, 650, 600);
+		telinha.setFont(sansMSBb);
 		
-		Font sansMSP = new Font("Comic Sans MS", 1, 49);
-		Font sansMSB = new Font("Comic Sans MS", 1, 15);
+		JButton atualizar = new JButton();
+		atualizar.setBounds(30, 30, 200, 50);
+		atualizar.setFont(sansMSB);
+		atualizar.setText("Atualizar lista");
+		listar();
+		atualizar.addActionListener(e -> {
+			
+			listar();
+		});
+		add(atualizar);
+		add(rolagem);
 		
-		
-		
-		JTextArea lblTitulo = new JTextArea();
-		lblTitulo.setText("  ID  -  Nome  |  Desenvolverdora  |  Qntd. Estoque  |  Preço  |  Genêro");
-		lblTitulo.setBounds(55, 50, 580, 570);
-		lblTitulo.setFont(sansMSB);
-		add(lblTitulo);
-		
-		
-		
-		
+		JButton btnVoltar = new JButton();
+		btnVoltar.setText("Voltar");
+		btnVoltar.setBounds(500, 30, 150, 50);
+		btnVoltar.setFont(sansMSB);
+		btnVoltar.addActionListener(e->{
+			new TelaPrincipal();
+			dispose();
+		});
+		add(btnVoltar);
 		
 		
 		
 		
 	}
+	
 }

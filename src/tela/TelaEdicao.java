@@ -115,7 +115,7 @@ public class TelaEdicao extends JFrame{
 										   Integer.parseInt(txtEstoque.getText()), 
 										   Double.parseDouble(txtPreco.getText()), 
 										   txtGenero.getText())) {
-					JOptionPane.showMessageDialog(null, "")
+					JOptionPane.showMessageDialog(null, "");
 				}
 			} catch (NumberFormatException e1) {
 				// TODO Auto-generated catch block

@@ -73,12 +73,25 @@ public class JogoDAO {
 				 PreparedStatement ps = con.prepareStatement(sql);
 				 ResultSet rs = ps.executeQuery();
 				 while(rs.next())  {
-					 Jogo j = new Jogo(rs.getInt("id"), rs.getString("nome"), rs.getString(""), rs.getInt("estoque"), rs.getDouble("preco"), rs.getString("genero") );	 
+					 Jogo j = new Jogo(rs.getInt("id"), rs.getString("nome"), rs.getString("dev"), rs.getInt("estoque"), rs.getDouble("preco"), rs.getString("genero") );	 
 				 }
+				 while (rs.next()) {
+					 int id = rs.getInt("id");
+					 String nome = rs.getString("nome");
+					 String dev = rs.getString("dev");
+					 String estoque = rs.getString("estoque");
+					 String preco = rs.getString("preco");
+					 String genero = rs.getString("genero");
+					 
+					 System.out.println(id + " - " + nome + " - " + dev+ " - " + estoque + " - " + preco + " - " + genero);
+					}
 				 con.close();
 			 }catch (Exception e) {
 				
 			}
 			 return lista;
 		 }
+		 
+		 
+			 
 }

@@ -10,7 +10,7 @@ public class Jogo {
 	private String genero;
 
 	public Jogo(int id, String nome, String dev, int estoque, double preco, String genero) {
-		this.id = id;
+		this.setId(id);
 		this.nome = nome;
 		this.dev = dev;
 		this.estoque = estoque;
@@ -47,6 +47,14 @@ public class Jogo {
 	}
 	public void setGenero(String genero) {
 		this.genero = genero;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }
