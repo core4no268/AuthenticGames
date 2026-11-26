@@ -114,6 +114,7 @@ public class TelaCadastro extends JFrame{
 					JogoDAO j = new JogoDAO();
 					Jogo jogo = new Jogo(nome, dev, estoque, preco, genero);
 					j.inserir(jogo);
+					JOptionPane.showMessageDialog(null, "Jogo cadastrado com sucesso");
 
 				}
 			} catch (Exception e2) {
