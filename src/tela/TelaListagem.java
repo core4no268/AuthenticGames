@@ -33,6 +33,7 @@ public class TelaListagem extends JFrame{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setTitle("AuthenticGames");
+		getContentPane().setBackground(Color.decode("#DAF0FF"));
 		ImageIcon logo = new ImageIcon("logo.png");
 		setIconImage(logo.getImage());
 
