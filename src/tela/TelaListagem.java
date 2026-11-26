@@ -17,10 +17,11 @@ public class TelaListagem extends JFrame{
 	Font sansMSB = new Font("Comic Sans MS", 1, 15);
 	Font sansMSP = new Font("Comic Sans MS", 1, 40);
 	JogoDAO dao = new JogoDAO();
-	ArrayList<Jogo> jogos = null;
+	ArrayList<Jogo> jogos = dao.listarTodos(1);
 	int height = 50;
 	int y = 170;
 	JPanel painelLista = new JPanel(null);
+	
 
 	public TelaListagem () {
 		setSize(700, 800);
@@ -40,7 +41,7 @@ public class TelaListagem extends JFrame{
 
 	public void init() {
 		
-		
+		System.out.println(jogos);
 		JLabel lblPagina = new JLabel();
 		lblPagina.setText("1");
 		lblPagina.setBounds(320, 660, 50, 50);
@@ -50,8 +51,6 @@ public class TelaListagem extends JFrame{
 		lblPagina.setFont(sansMSB);
 		lblPagina.setHorizontalAlignment(SwingConstants.CENTER);
 		add(lblPagina);
-		
-		jogos = dao.listarTodos(Integer.parseInt(lblPagina.getText()));
 		
 		listar(jogos);
 		

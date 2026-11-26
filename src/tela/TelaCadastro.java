@@ -78,7 +78,7 @@ public class TelaCadastro extends JFrame{
 		add(txtPreco);
 
 		JLabel lblGenero = new JLabel();
-		lblGenero.setText("Genêro:");
+		lblGenero.setText("Gênero:");
 		lblGenero.setBounds(50, lblPreco.getY()+espac, 400, 45);
 		lblGenero.setFont(sansMSB);
 		add(lblGenero);
@@ -104,9 +104,9 @@ public class TelaCadastro extends JFrame{
 				}else if((txtPreco.getText() == null) || (txtPreco.getText().equals(""))) {
 					JOptionPane.showMessageDialog(null, "Digite o preço para cadastrar");
 				}else if((txtGenero.getText() == null) || (txtGenero.getText().equals(""))) {
-					JOptionPane.showMessageDialog(null, "Digite o genero para cadastrar");
+					JOptionPane.showMessageDialog(null, "Digite o gênero para cadastrar");
 				}else if(Double.parseDouble(txtPreco.getText()) < 0 || Integer.parseInt(txtEstoque.getText()) < 0){
-					JOptionPane.showMessageDialog(null, "digite apenas numeros positivos");
+					JOptionPane.showMessageDialog(null, "Digite apenas números positivos");
 				}else{
 					String nome = txtNome.getText(), dev = txtDev.getText(), genero = txtGenero.getText();
 					int estoque = Integer.parseInt(txtEstoque.getText());
