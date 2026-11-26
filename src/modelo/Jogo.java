@@ -4,23 +4,23 @@ public class Jogo {
 	
 	private int id;
 	private String nome;
-	private String dev;
+	private String desenvolvedor;
 	private int estoque;
 	private double preco;
 	private String genero;
 
-	public Jogo(String nome, String dev, int estoque, double preco, String genero) {
+	public Jogo(String nome, String desenvolvedor, int estoque, double preco, String genero) {
 		this.nome = nome;
-		this.dev = dev;
+		this.desenvolvedor = desenvolvedor;
 		this.estoque = estoque;
 		this.preco = preco;
 		this.genero = genero;
 	}
 	
-	public Jogo(int id, String nome, String dev, int estoque, double preco, String genero) {
+	public Jogo(int id, String nome, String desenvolvedor, int estoque, double preco, String genero) {
 		this.id = id;
 		this.nome = nome;
-		this.dev = dev;
+		this.desenvolvedor = desenvolvedor;
 		this.estoque = estoque;
 		this.preco = preco;
 		this.genero = genero;
@@ -33,10 +33,10 @@ public class Jogo {
 		this.nome = nome;
 	}
 	public String getDev() {
-		return dev;
+		return desenvolvedor;
 	}
 	public void setDev(String dev) {
-		this.dev = dev;
+		this.desenvolvedor = dev;
 	}
 	public int getEstoque() {
 		return estoque;

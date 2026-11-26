@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 
 public class JogoDAO {
 	public void inserir(Jogo jogo) throws SQLException {
-		String sql = "INSERT INTO jogo (nome, dev, estoque, preco, genero) "
+		String sql = "INSERT INTO jogo (nome, desenvolvedor, estoque, preco, genero) "
 				+ "VALUES (?, ?, ?, ?, ?)";
 		Conexao conexao = new Conexao();
 		Connection con = conexao.getConexao();
@@ -27,7 +27,7 @@ public class JogoDAO {
 
 	public Jogo buscar(int id) {
 		Jogo jogo = null;
-		String sql = "SELECT nome, dev, estoque, preco, genero FROM Jogo WHERE id = ?";
+		String sql = "SELECT nome, desenvolvedor, estoque, preco, genero FROM Jogo WHERE id = ?";
 		Conexao conexao = new Conexao();
 		try {
 			Connection con = conexao.getConexao();
@@ -36,7 +36,7 @@ public class JogoDAO {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				String nome = rs.getString("nome");
-				String dev = rs.getString("dev");
+				String dev = rs.getString("desenvolvedor");
 				int estoque = rs.getInt("estoque");
 				double preco = rs.getDouble("preco");
 				String genero = rs.getString("genero");
@@ -53,7 +53,7 @@ public class JogoDAO {
 	}
 
 	public boolean atualizar(int id, String nome, String dev, int estoque, double preco, String genero) {
-		String sql = "UPDATE Jogo SET nome = ?, dev = ?, estoque = ?, preco = ?, genero = ? WHERE id = ?";
+		String sql = "UPDATE Jogo SET nome = ?, desenvolvedor = ?, estoque = ?, preco = ?, genero = ? WHERE id = ?";
 		Conexao conexao = new Conexao();
 		try {
 			Connection con = conexao.getConexao();
