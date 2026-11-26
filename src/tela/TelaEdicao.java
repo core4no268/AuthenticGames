@@ -177,7 +177,9 @@ public class TelaEdicao extends JFrame{
 					txtEstoque.setText(jogo.getEstoque() + "");
 					txtPreco.setText(jogo.getPreco() + "");
 					txtGenero.setText(jogo.getGenero());
-				} else {
+				} else if(Integer.parseInt(txtId.getText()) <= 0) {
+					JOptionPane.showMessageDialog(null, "ID são apenas numeros inteiros");
+			}else{
 					JOptionPane.showMessageDialog(null, "ID não encontrado");
 				}
 			} catch (NumberFormatException e1) {

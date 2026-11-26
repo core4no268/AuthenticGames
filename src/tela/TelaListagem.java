@@ -20,6 +20,7 @@ public class TelaListagem extends JFrame{
 	ArrayList<Jogo> jogos = null;
 	int height = 50;
 	int y = 170;
+	JPanel painelLista = new JPanel(null);
 
 	public TelaListagem () {
 		setSize(700, 800);
@@ -39,7 +40,6 @@ public class TelaListagem extends JFrame{
 
 	public void init() {
 		
-		listar();
 		
 		JLabel lblPagina = new JLabel();
 		lblPagina.setText("1");
@@ -52,6 +52,8 @@ public class TelaListagem extends JFrame{
 		add(lblPagina);
 		
 		jogos = dao.listarTodos(Integer.parseInt(lblPagina.getText()));
+		
+		listar(jogos);
 		
 		
 		JLabel lblIdP = new JLabel();
@@ -138,6 +140,15 @@ public class TelaListagem extends JFrame{
 		btnAnterior.setBounds(260, 660, 50, 50);
 		btnAnterior.setFont(sansMSB);
 		btnAnterior.addActionListener(e->{
+			if (Integer.parseInt(lblPagina.getText()) > 1){
+			lblPagina.setText(Integer.parseInt(lblPagina.getText())-1+"");
+			jogos.clear();
+			jogos.addAll(dao.listarTodos(Integer.parseInt(lblPagina.getText())));
+			painelLista.removeAll();
+			listar(jogos);
+			painelLista.revalidate();
+			painelLista.repaint();
+			}
 		});
 		add(btnAnterior);
 		
@@ -149,74 +160,94 @@ public class TelaListagem extends JFrame{
 			lblPagina.setText(Integer.parseInt(lblPagina.getText())+1+"");
 			jogos.clear();
 			jogos.addAll(dao.listarTodos(Integer.parseInt(lblPagina.getText())));
+			painelLista.removeAll();
+			listar(jogos);
+			painelLista.revalidate();
+			painelLista.repaint();
+			
 		});
 		add(btnProximo);
+		painelLista.setBounds(30, 170, 630, height*9);
+		painelLista.setBackground(Color.decode("#DAF0FF"));
+		add(painelLista);
 	}
 	
-	public void listar() {
+	public void listar(ArrayList<Jogo> jogos) {
+		y=0;
 		for (Jogo j : jogos) {
 			JLabel lblId = new JLabel();
-			lblId.setBounds(30, y, 40, height);
+			lblId = new JLabel();
+			lblId.setBounds(0, y, 40, height);
 			lblId.setBackground(Color.white);
 			lblId.setOpaque(true);
 			lblId.setText(j.getId()+"");
 			lblId.setFont(sansMSB);
 			lblId.setHorizontalAlignment(SwingConstants.CENTER);
 			lblId.setBorder(BorderFactory.createLineBorder(Color.decode("#000000"), 1));
-			add(lblId);
+			painelLista.add(lblId);
 			
 			JLabel lblNome = new JLabel();
-			lblNome.setBounds(70, y, 200, height);
+			lblNome = new JLabel();
+			lblNome.setBounds(40, y, 200, height);
 			lblNome.setBackground(Color.white);
 			lblNome.setOpaque(true);
 			lblNome.setText(j.getNome());
 			lblNome.setFont(sansMSB);
 			lblNome.setHorizontalAlignment(SwingConstants.CENTER);
 			lblNome.setBorder(BorderFactory.createLineBorder(Color.decode("#000000"), 1));
-			add(lblNome);
+			painelLista.add(lblNome);
 			
+
 			JLabel lblDev = new JLabel();
-			lblDev.setBounds(270, y, 150, height);
+			lblDev = new JLabel();
+			lblDev.setBounds(240, y, 150, height);
 			lblDev.setBackground(Color.white);
 			lblDev.setOpaque(true);
 			lblDev.setText(j.getDev());
 			lblDev.setFont(sansMSB);
 			lblDev.setHorizontalAlignment(SwingConstants.CENTER);
 			lblDev.setBorder(BorderFactory.createLineBorder(Color.decode("#000000"), 1));
-			add(lblDev);
+			painelLista.add(lblDev);
 			
+
 			JLabel lblEstoque = new JLabel();
-			lblEstoque.setBounds(420, y, 70, height);
+			lblEstoque = new JLabel();
+			lblEstoque.setBounds(390, y, 70, height);
 			lblEstoque.setBackground(Color.white);
 			lblEstoque.setOpaque(true);
 			lblEstoque.setText(j.getEstoque()+"");
 			lblEstoque.setFont(sansMSB);
 			lblEstoque.setHorizontalAlignment(SwingConstants.CENTER);
 			lblEstoque.setBorder(BorderFactory.createLineBorder(Color.decode("#000000"), 1));
-			add(lblEstoque);
+			painelLista.add(lblEstoque);
 			
+
 			JLabel lblPreco = new JLabel();
-			lblPreco.setBounds(490, y, 70, height);
+			lblPreco = new JLabel();
+			lblPreco.setBounds(460, y, 70, height);
 			lblPreco.setBackground(Color.white);
 			lblPreco.setOpaque(true);
 			lblPreco.setText(j.getPreco()+"");
 			lblPreco.setFont(sansMSB);
 			lblPreco.setHorizontalAlignment(SwingConstants.CENTER);
 			lblPreco.setBorder(BorderFactory.createLineBorder(Color.decode("#000000"), 1));
-			add(lblPreco);
+			painelLista.add(lblPreco);
 			
+
 			JLabel lblGenero = new JLabel();
-			lblGenero.setBounds(560, y, 100, height);
+			lblGenero = new JLabel();
+			lblGenero.setBounds(530, y, 100, height);
 			lblGenero.setBackground(Color.white);
 			lblGenero.setOpaque(true);
 			lblGenero.setText(j.getGenero()+"");
 			lblGenero.setFont(sansMSB);
 			lblGenero.setHorizontalAlignment(SwingConstants.CENTER);
 			lblGenero.setBorder(BorderFactory.createLineBorder(Color.decode("#000000"), 1));
-			add(lblGenero);
+			painelLista.add(lblGenero);
 			
 			y+=50;
 		}
+		y = 170;
 	}
 
 }
