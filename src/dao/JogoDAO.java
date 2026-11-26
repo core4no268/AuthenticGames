@@ -40,7 +40,7 @@ public class JogoDAO {
 				int estoque = rs.getInt("estoque");
 				double preco = rs.getDouble("preco");
 				String genero = rs.getString("genero");
-				jogo = new Jogo(id, nome, dev, estoque, preco, genero);
+				jogo = new Jogo(nome, dev, estoque, preco, genero);
 
 			}
 			ps.close();
@@ -74,23 +74,6 @@ public class JogoDAO {
 
 	}
 
-	public ArrayList<Jogo> listarTodos()	{
-		ArrayList<Jogo> lista = new ArrayList<>();
-		String sql = "SELECT * FROM Jogo";
-		try {
-			Conexao conexao = new Conexao();
-			Connection con = conexao.getConexao();
-			PreparedStatement ps = con.prepareStatement(sql);
-			ResultSet rs = ps.executeQuery();
-			while(rs.next())  {
-				Jogo j = new Jogo(rs.getInt("id"), rs.getString("nome"), rs.getString(""), rs.getInt("estoque"), rs.getDouble("preco"), rs.getString("genero") );	 
-			}
-			con.close();
-		}catch (Exception e) {
-
-		}
-		return lista;
-	}
 	
 	public boolean excluir(int id) {
 		String sql = "DELETE FROM Jogo WHERE id = ?";
@@ -106,36 +89,29 @@ public class JogoDAO {
 		}
 		}
 		 
-		 public ArrayList<Jogo> listarTodos()	{
+		 public ArrayList<Jogo> listarTodos(int pagina)	{
 			 ArrayList<Jogo> lista = new ArrayList<>();
-			 String sql = "SELECT * FROM Jogo";
+			 String sql = "SELECT * FROM Jogo ORDER BY id ASC LIMIT 9 OFFSET ?";
+			 int offSet = (pagina-1)*9;
 			 try {
 				 Conexao conexao = new Conexao();
 				 Connection con = conexao.getConexao();
 				 PreparedStatement ps = con.prepareStatement(sql);
+				 ps.setInt(1, offSet);
 				 ResultSet rs = ps.executeQuery();
 				 while(rs.next())  {
-					 Jogo j = new Jogo(rs.getInt("id"), rs.getString("nome"), rs.getString("dev"), rs.getInt("estoque"), rs.getDouble("preco"), rs.getString("genero") );	 
+					 Jogo j = new Jogo(rs.getInt("id"), rs.getString("nome"), rs.getString("dev"), rs.getInt("estoque"), rs.getDouble("preco"), rs.getString("genero") );
+					 lista.add(j);
 				 }
-				 while (rs.next()) {
-					 int id = rs.getInt("id");
-					 String nome = rs.getString("nome");
-					 String dev = rs.getString("dev");
-					 String estoque = rs.getString("estoque");
-					 String preco = rs.getString("preco");
-					 String genero = rs.getString("genero");
-					 
-					 System.out.println(id + " - " + nome + " - " + dev+ " - " + estoque + " - " + preco + " - " + genero);
-					}
+				 
 				 con.close();
+				 return lista;
 			 }catch (Exception e) {
-				
+				return null;
 			}
-			 return lista;
+
 		 }
-		 
-		 
 			 
 		
 	}
-}
+

@@ -5,6 +5,9 @@ import java.awt.Font;
 import java.awt.Image;
 import javax.swing.*;
 
+import dao.JogoDAO;
+import modelo.Jogo;
+
 public class TelaCadastro extends JFrame{
 	public TelaCadastro () {
 		setSize(700, 800);
@@ -102,10 +105,15 @@ public class TelaCadastro extends JFrame{
 					JOptionPane.showMessageDialog(null, "Digite o preço para cadastrar");
 				}else if((txtGenero.getText() == null) || (txtGenero.getText().equals(""))) {
 					JOptionPane.showMessageDialog(null, "Digite o genero para cadastrar");
-				} else {
+				}else if(Double.parseDouble(txtPreco.getText()) < 0 || Integer.parseInt(txtEstoque.getText()) < 0){
+					JOptionPane.showMessageDialog(null, "digite apenas numeros positivos");
+				}else{
 					String nome = txtNome.getText(), dev = txtDev.getText(), genero = txtGenero.getText();
 					int estoque = Integer.parseInt(txtEstoque.getText());
 					double preco = Double.parseDouble(txtPreco.getText());
+					JogoDAO j = new JogoDAO();
+					Jogo jogo = new Jogo(nome, dev, estoque, preco, genero);
+					j.inserir(jogo);
 
 				}
 			} catch (Exception e2) {

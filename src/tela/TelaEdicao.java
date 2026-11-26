@@ -111,18 +111,22 @@ public class TelaEdicao extends JFrame{
 		btnAtualizar.setFont(sansMSB);
 		btnAtualizar.addActionListener(e->{
 			try {
-				if(new JogoDAO().atualizar(Integer.parseInt(txtId.getText()),
-						txtNome.getText(), 
-						txtDev.getText(), 
-						Integer.parseInt(txtEstoque.getText()), 
-						Double.parseDouble(txtPreco.getText()), 
-						txtGenero.getText())) {
-					JOptionPane.showMessageDialog(null, "Jogo atualizado com sucesso");
+				if(Double.parseDouble(txtPreco.getText()) < 0 || Integer.parseInt(txtId.getText()) < 0 || Integer.parseInt(txtEstoque.getText()) < 0) {
+					JOptionPane.showMessageDialog(null, "Digite apenas numeros positivos");
 				} else {
-					JOptionPane.showMessageDialog(null, "Erro ao cadastrar o jogo");
+					if(new JogoDAO().atualizar(Integer.parseInt(txtId.getText()),
+							txtNome.getText(), 
+							txtDev.getText(), 
+							Integer.parseInt(txtEstoque.getText()), 
+							Double.parseDouble(txtPreco.getText()), 
+							txtGenero.getText())) {
+						JOptionPane.showMessageDialog(null, "Jogo atualizado com sucesso");
+					} else {
+						JOptionPane.showMessageDialog(null, "Erro ao cadastrar o jogo");
+					}
 				}
 			} catch (NumberFormatException e1) {
-				JOptionPane.showMessageDialog(null, "Digite numeros validos nos campos\nID: numeros inteiros\nEstoque:numeros inteiros\nPreço: numeros reais (Utilize .)");
+				JOptionPane.showMessageDialog(null, "Digite numeros validos nos campos\nID: numeros inteiros\nEstoque:numeros inteiros\nPreço: numeros reais (Utilize ponto final ao invés de virgulas)");
 			}
 		});
 		add(btnAtualizar);
@@ -138,7 +142,8 @@ public class TelaEdicao extends JFrame{
 					JOptionPane.showMessageDialog(null, "Jogo excluido com sucesso");
 				}
 			} catch (NumberFormatException e1) {
-				JOptionPane.showMessageDialog(null, "Digite um numero valido no id");			}
+				JOptionPane.showMessageDialog(null, "Digite um numero valido no id");
+			}
 			txtNome.setText(null);
 			txtDev.setText(null);
 			txtEstoque.setText(null);
@@ -163,21 +168,21 @@ public class TelaEdicao extends JFrame{
 		btnBuscar.setFont(sansMSB);
 		btnBuscar.addActionListener(e->{
 
-				Jogo jogo;
-				try {
-					jogo = new JogoDAO().buscar(Integer.parseInt(txtId.getText()));
-					if (jogo != null) {
+			Jogo jogo;
+			try {
+				jogo = new JogoDAO().buscar(Integer.parseInt(txtId.getText()));
+				if (jogo != null) {
 					txtNome.setText(jogo.getNome());
 					txtDev.setText(jogo.getDev());
 					txtEstoque.setText(jogo.getEstoque() + "");
 					txtPreco.setText(jogo.getPreco() + "");
 					txtGenero.setText(jogo.getGenero());
-					} else {
-						JOptionPane.showMessageDialog(null, "ID não encontrado");
-					}
-				} catch (NumberFormatException e1) {
-					JOptionPane.showMessageDialog(null, "Digite um numero valido no id");
-				} 
+				} else {
+					JOptionPane.showMessageDialog(null, "ID não encontrado");
+				}
+			} catch (NumberFormatException e1) {
+				JOptionPane.showMessageDialog(null, "Digite um numero valido no id");
+			} 
 
 		});
 		add(btnBuscar);

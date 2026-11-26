@@ -9,8 +9,16 @@ public class Jogo {
 	private double preco;
 	private String genero;
 
+	public Jogo(String nome, String dev, int estoque, double preco, String genero) {
+		this.nome = nome;
+		this.dev = dev;
+		this.estoque = estoque;
+		this.preco = preco;
+		this.genero = genero;
+	}
+	
 	public Jogo(int id, String nome, String dev, int estoque, double preco, String genero) {
-		this.setId(id);
+		this.id = id;
 		this.nome = nome;
 		this.dev = dev;
 		this.estoque = estoque;
